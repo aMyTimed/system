@@ -144,9 +144,33 @@
   hardware.bluetooth.powerOnBoot = true;
 
   hardware.opengl = { # this fixes the "glXChooseVisual failed" bug, context: https://github.com/NixOS/nixpkgs/issues/47932 
-     enable = true; 
-     driSupport = true; 
-     driSupport32Bit = true; 
-   }; 
+    enable = true; 
+    driSupport = true; 
+    driSupport32Bit = true; 
+  };
+
+   # Context: PC has dualpoint stick in middle of keyboard that has severe drift, as in constantly even without being touched it makes the mouse stuck in a corner of the screen.
+   # A simple startup script can be enough to fix it, but sometimes the script can run too early. Running it minutely will ensure dualpoint is permanently annihilated
+
+  systemd.user.services.dualpointNuke = {
+    description = "Nuke dualpoint stick out of our dimension";
+    serviceConfig.PassEnvironment = "DISPLAY";
+    script = ''
+      xinput set-prop "AlpsPS/2 ALPS DualPoint Stick" "Device Enabled" 0
+    '';
+    # starts during login and after login, incredible
+    wantedBy = [
+      "multi-user.target"
+      "graphical.target"
+    ];
+  };
+
+  systemd.user.timers.dualpointNuke =  {
+    wantedBy = [ "multi-user.target" ];
+    timerConfig = {
+      OnCalendar = "minutely";
+      Unit = "dualpointNuke.service";
+    };
+  };
 
 }
