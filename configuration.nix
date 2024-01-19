@@ -158,15 +158,13 @@
     script = ''
       xinput set-prop "AlpsPS/2 ALPS DualPoint Stick" "Device Enabled" 0
     '';
-    # starts during login and after login, incredible
-    wantedBy = [
-      "multi-user.target"
-      "graphical.target"
-    ];
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
   };
 
   systemd.user.timers.dualpointNuke =  {
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    partOf = [ "graphical-session.target" ];
     timerConfig = {
       OnCalendar = "minutely";
       Unit = "dualpointNuke.service";
