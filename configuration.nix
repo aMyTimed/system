@@ -109,6 +109,8 @@
     wget
     helix
     killall
+    gcc
+    stdenv
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
