@@ -1,6 +1,6 @@
 # purge all files in /etc/nixos so no lingering files are left
 sudo rm -rf /etc/nixos/*
-sudo cp -r ./src/ /etc/nixos/
+sudo cp -r ./src/* /etc/nixos/
 echo "Copied files to /etc/nixos/";
 
 # Each time, we generate a fresh hardware configuration.
@@ -9,6 +9,6 @@ echo "Copied files to /etc/nixos/";
 nixos-generate-config --show-hardware-config | sudo dd status=none of=/etc/nixos/hardware-configuration.nix
 echo "Generated hardware configuration";
 
-sudo nixos-rebuild switch
+#sudo nixos-rebuild switch
 
-echo "\nAll done!";
+echo "All done!";
