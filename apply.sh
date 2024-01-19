@@ -9,6 +9,8 @@ echo "Copied files to /etc/nixos/";
 nixos-generate-config --show-hardware-config | sudo dd status=none of=/etc/nixos/hardware-configuration.nix
 echo "Generated hardware configuration";
 
-sudo nixos-rebuild switch
+echo "Rebuilding NixOS...";
+sudo nixos-rebuild switch;
 
+echo;
 echo "All done!";
