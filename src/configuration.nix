@@ -111,6 +111,11 @@
     killall
     gcc
     stdenv
+    qtgraphicaleffects
+    qtstyleplugin-kvantum
+    cmake
+    qtbase
+    extra-cmake-modules
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
