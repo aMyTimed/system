@@ -23,7 +23,7 @@ nixos-generate-config --show-hardware-config | sudo dd status=none of=./hardware
 echo "Generated hardware configuration";
 
 echo "Rebuilding NixOS...";
-sudo nixos-rebuild switch --flake .#somewhere;
+sudo nixos-rebuild switch --flake path:.#somewhere --impure;
 
 echo;
 echo "Finished! Check above logs to make sure there were no errors.";

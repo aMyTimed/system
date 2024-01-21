@@ -67,6 +67,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  users.users.someone = {
+    isNormalUser = true;
+    description = "someone";
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
+
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
