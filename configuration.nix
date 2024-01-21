@@ -15,7 +15,7 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "somewhere"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -67,75 +67,21 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.someone = {
-    isNormalUser = true;
-    description = "someone";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      librewolf
-      ungoogled-chromium
-      aseprite
-      vscode
-      peek
-      kate
-      inkscape-with-extensions
-      blender
-      vlc
-      libreoffice
-      kcolorchooser
-      rustc
-      cargo
-      ffmpeg
-      bun
-      git
-      nodejs
-      discord
-      teams-for-linux
-      wine
-      neofetch
-      steam
-    #  thunderbird
-    ];
-  };
+  # Enable Flakes and the new command-line tool
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     helix
+    git
     killall
-    gcc
-    stdenv
-    qtgraphicaleffects
-    qtstyleplugin-kvantum
-    cmake
-    qtbase
-    extra-cmake-modules
+    curl
   ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Set default editor to helix
+  environment.variables.EDITOR = "hx";
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -153,27 +99,4 @@
     driSupport = true; 
     driSupport32Bit = true; 
   };
-
-   # Context: PC has dualpoint stick in middle of keyboard that has severe drift, as in constantly even without being touched it makes the mouse stuck in a corner of the screen.
-   # A simple startup script can be enough to fix it, but sometimes the script can run too early. Running it minutely will ensure dualpoint is permanently annihilated
-
-  systemd.user.services.dualpointNuke = {
-    description = "Nuke dualpoint stick out of our dimension";
-    serviceConfig.PassEnvironment = "DISPLAY";
-    script = ''
-      xinput set-prop "AlpsPS/2 ALPS DualPoint Stick" "Device Enabled" 0
-    '';
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-  };
-
-  systemd.user.timers.dualpointNuke =  {
-    wantedBy = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    timerConfig = {
-      OnCalendar = "minutely";
-      Unit = "dualpointNuke.service";
-    };
-  };
-
 }
