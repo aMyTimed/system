@@ -56,6 +56,8 @@
     wine
     steam
 
+    plank
+
     # programming languages
     rustc
     cargo
