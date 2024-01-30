@@ -56,6 +56,8 @@
 		displayManager.defaultSession = "cinnamon";
 	};
 
+  # services.xserver.videoDrivers = ["intel"];
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";

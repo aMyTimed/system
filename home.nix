@@ -44,7 +44,9 @@
     librewolf
     ungoogled-chromium # for webdev, chromium is good for testing and stuff
     aseprite # we could use libresprite but its missing some features
-    vscode # no vscodium because i use GitHub Copilot
+    #vscode # no vscodium because i use GitHub Copilot
+    # nvm
+    vscodium
     peek
     inkscape-with-extensions
     blender
@@ -73,6 +75,7 @@
     ffmpeg
     neofetch # gotta flex the NixOS somehow
     glow # markdown previewer in terminal
+    xautoclick
 
     # archives
     zip
