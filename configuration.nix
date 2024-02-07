@@ -105,6 +105,17 @@
     git
     killall
     curl
+    byobu
+    screen
+    alsaLib
+    pkgconfig
+    udev
+    vulkan-loader
+    xorg.libX11
+    x11
+    xorg.libXrandr
+    xorg.libXcursor
+    xorg.libXi
   ];
   # Set default editor to helix
   environment.variables.EDITOR = "hx";
