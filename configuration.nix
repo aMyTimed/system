@@ -108,7 +108,7 @@
     byobu
     screen
     alsaLib
-    pkgconfig
+    pkg-config
     udev
     vulkan-loader
     xorg.libX11
