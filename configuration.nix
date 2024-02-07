@@ -112,7 +112,6 @@
     udev
     vulkan-loader
     xorg.libX11
-    x11
     xorg.libXrandr
     xorg.libXcursor
     xorg.libXi
