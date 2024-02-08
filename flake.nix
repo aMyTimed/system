@@ -22,6 +22,9 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    got = {
+      url = "github:asour8/got/main";
+    };
   };
 
   # `outputs` are all the build result of the flake.
@@ -34,7 +37,7 @@
   # 
   # The `@` syntax here is used to alias the attribute set of the
   # inputs's parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, got, ... }@inputs: {
     nixosConfigurations = {
       # By default, NixOS will try to refer the nixosConfiguration with
       # its hostname, so the system named `somewhere` will use this one.
@@ -104,6 +107,11 @@
             home-manager.users.someone = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+
+            # we pass got
+            home-manager.extraSpecialArgs = {
+              got = got;
+            };
           }
         ];
       };

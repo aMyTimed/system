@@ -107,7 +107,7 @@
     curl
     byobu
     screen
-    alsaLib
+    alsa-lib
     pkg-config
     udev
     vulkan-loader

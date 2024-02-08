@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, got, ... }:
 
 {
   home.username = "someone";
@@ -39,7 +39,7 @@
   };
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; [
+  home.packages = with pkgs; with got; [
     # essentials
     librewolf
     ungoogled-chromium # for webdev, chromium is good for testing and stuff
@@ -89,6 +89,8 @@
     # it provides the command `nom` works just like `nix`
     # with more details log output
     nix-output-monitor
+
+    (pkgs.buildEnv { name = "got"; paths = [ got ]; })
   ];
 
   programs.bash = {

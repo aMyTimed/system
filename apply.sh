@@ -4,15 +4,20 @@
 # If /etc/nixos exists, move it to /etc/nixos.backup. If that exists, keep trying of increasing the number.
 # We don't use /etc/nixos and instead have the config locally in this repo.
 if [ -d "/etc/nixos" ]; then
-    echo "Moving /etc/nixos to /etc/nixos.backup, so this flake can be used.";
-    if [ -d "/etc/nixos.backup" ]; then
-        i=1;
-        while [ -d "/etc/nixos.backup.$i" ]; do
-            i=$((i+1));
-        done
-        sudo mv /etc/nixos "/etc/nixos.backup.$i";
+    # check if its empty
+    if [ "$(ls -A /etc/nixos)" ]; then
+        echo "Moving /etc/nixos to /etc/nixos.backup, so this flake can be used.";
+        if [ -d "/etc/nixos.backup" ]; then
+            i=1;
+            while [ -d "/etc/nixos.backup.$i" ]; do
+                i=$((i+1));
+            done
+            sudo mv /etc/nixos "/etc/nixos.backup.$i";
+        else
+            sudo mv /etc/nixos /etc/nixos.backup;
+        fi
     else
-        sudo mv /etc/nixos /etc/nixos.backup;
+        echo "Keeping empty /etc/nixos/, it can't interfere";
     fi
 fi
 
