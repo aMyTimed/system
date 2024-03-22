@@ -64,6 +64,10 @@
     xkbVariant = "";
   };
 
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+  '';
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -84,6 +88,9 @@
     #media-session.enable = true;
   };
 
+  services.udev.extraRules = ''
+    ATTRS{name}=="*DualPoint Stick", ENV{ID_INPUT}="", ENV{ID_INPUT_MOUSE}="", ENV{ID_INPUT_POINTINGSTICK}=""
+  '';
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -99,15 +106,21 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  fonts.packages = with pkgs; [
+    cozette
+    jetbrains-mono
+  ];
+
   environment.systemPackages = with pkgs; [
     wget
-    helix
+    # helix (now set by home manager with settings)
     git
     killall
     curl
     byobu
     screen
     alsa-lib
+    alsa-lib.dev
     pkg-config
     udev
     vulkan-loader
@@ -115,10 +128,23 @@
     xorg.libXrandr
     xorg.libXcursor
     xorg.libXi
+    python3
+    clang
+    mold
+    gnumake
+    meson
+    gtk3
+    gtk3.dev
+    ninja
+    gn
+    wgnord
   ];
-  # Set default editor to helix
-  environment.variables.EDITOR = "hx";
 
+  programs.chromium = {
+    enable = true;
+    defaultSearchProviderSearchURL = "https://google.com/search?q={searchTerms}";
+  };
+  
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
