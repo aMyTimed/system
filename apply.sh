@@ -12,6 +12,6 @@ else
         echo "Host $1 does not exist!";
         exit 1;
     fi
-    sudo nixos-rebuild switch --flake path:.#$1;
+    sudo nixos-rebuild switch --flake path:.#$1 --show-trace;
     
 fi

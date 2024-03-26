@@ -3,6 +3,6 @@
 {
   imports =
     [
-      ../home/home.nix
+      ../../home/home.nix
     ];
 }
