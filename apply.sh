@@ -1,34 +1,17 @@
-# Just a simple apply script to apply the flake to the system.
-# Instead of requiring manual setup, this script allows you to just clone the repo and apply it with one command.
+# for the funny, we allow people to choose to apply any host configuration
+# this is useful if youre changing hostnames or something
 
-# If /etc/nixos exists, move it to /etc/nixos.backup. If that exists, keep trying of increasing the number.
-# We don't use /etc/nixos and instead have the config locally in this repo.
-if [ -d "/etc/nixos" ]; then
-    # check if its empty
-    if [ "$(ls -A /etc/nixos)" ]; then
-        echo "Moving /etc/nixos to /etc/nixos.backup, so this flake can be used.";
-        if [ -d "/etc/nixos.backup" ]; then
-            i=1;
-            while [ -d "/etc/nixos.backup.$i" ]; do
-                i=$((i+1));
-            done
-            sudo mv /etc/nixos "/etc/nixos.backup.$i";
-        else
-            sudo mv /etc/nixos /etc/nixos.backup;
-        fi
-    else
-        echo "Keeping empty /etc/nixos/, it can't interfere";
+# no arg = just default it
+if [ -z "$1" ]; then
+    sudo nixos-rebuild switch --flake path:.;
+
+# arg = apply that host if it exists
+else
+    # Make sure ./hosts/$1 exists
+    if [ ! -d "./hosts/$1" ]; then
+        echo "Host $1 does not exist!";
+        exit 1;
     fi
+    sudo nixos-rebuild switch --flake path:.#$1;
+    
 fi
-
-# Each time, we generate a fresh hardware configuration.
-# This is useful because it ensures the right config is used on each system without requiring manual intervention.
-# It can also guarantee the hardware config will never be missing.
-nixos-generate-config --show-hardware-config | sudo dd status=none of=./nixos/hardware-configuration.nix;
-echo "Generated hardware configuration";
-
-echo "Rebuilding NixOS...";
-sudo nixos-rebuild switch --flake path:.#somewhere --impure;
-
-echo;
-echo "Finished! Check above logs to make sure there were no errors.";
