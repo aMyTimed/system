@@ -21,5 +21,5 @@
   hardware.nvidia.powerManagement.enable = true;
 
   # Making sure to use the proprietary drivers until the issue above is fixed upstream
-  hardware.nvidia.open = false;
+  hardware.nvidia.open = true; #false;
 }
