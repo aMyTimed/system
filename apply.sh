@@ -24,7 +24,7 @@ fi
 # Each time, we generate a fresh hardware configuration.
 # This is useful because it ensures the right config is used on each system without requiring manual intervention.
 # It can also guarantee the hardware config will never be missing.
-nixos-generate-config --show-hardware-config | sudo dd status=none of=./hardware-configuration.nix;
+nixos-generate-config --show-hardware-config | sudo dd status=none of=./nixos/hardware-configuration.nix;
 echo "Generated hardware configuration";
 
 echo "Rebuilding NixOS...";
