@@ -12,7 +12,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.configurationLimit = 1;
+  boot.loader.configurationLimit = 1;
 
   networking.hostName = "LENOVO720";
 
