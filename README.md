@@ -1,7 +1,18 @@
 # `system`
 
-Welcome to this NixOS config.
+simple clean modular NixOS `home-manager` system
 
-All you need to do to get started is run `./apply.sh`. It'll automatically set everything up for your hardware and apply it.
+## Usage
 
-This system has only been tested on NixOS, it may not work on other systems.
+all you need to do to get started is run `./apply.sh` on nixos
+
+## Features
+
+- super clean and modular
+- good
+- easy to understand
+- good
+
+## License
+
+comign soon
