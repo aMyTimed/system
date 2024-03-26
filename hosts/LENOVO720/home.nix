@@ -13,4 +13,6 @@
       "DP-3, 1920x1080, 3840x0, 1"
     ];
   };
+
+  xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
 }
