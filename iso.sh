@@ -1,0 +1,1 @@
+nix build path:.#nixosConfigurations.IMAGE.config.system.build.isoImage
