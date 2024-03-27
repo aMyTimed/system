@@ -8,5 +8,6 @@
     ./cava
     ./bash
     ./hyprpaper
+    ./vscode
   ];
 }

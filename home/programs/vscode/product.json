@@ -1,0 +1,12 @@
+{
+    "extensionEnabledApiProposals": {
+        "GitHub.copilot": [
+            "inlineCompletions",
+            "inlineCompletionsNew",
+            "inlineCompletionsAdditions",
+            "textDocumentNotebook",
+            "interactive",
+            "terminalDataWriteEvent"
+        ]
+    }
+}
