@@ -1,4 +1,4 @@
-{ config, pkgs, got, ... }:
+{ lib, config, pkgs, got, ... }:
 
 {
   imports =
@@ -14,5 +14,6 @@
     ];
   };
 
-  xdg.configFile."hypr/hyprpaper.conf".source = ./hyprpaper.conf;
+  # override wallpaper thing since multiple monitors on here
+  xdg.configFile."hypr/hyprpaper.conf".source = lib.mkForce ./hyprpaper.conf;
 }
