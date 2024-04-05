@@ -108,6 +108,10 @@
 
     google-chrome
 
+    nodePackages.typescript-language-server
+    vscode-langservers-extracted
+    rust-analyzer
+
     (pkgs.buildEnv { name = "got"; paths = [ got ]; })
   ];
 

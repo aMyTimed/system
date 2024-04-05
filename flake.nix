@@ -85,6 +85,28 @@
           }
         ];
       };
+      "IMAGE" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        specialArgs = inputs;  # pass custom arguments into all sub module.
+        modules = [
+          ./hosts/IMAGE/configuration.nix
+
+          # make home-manager as a module of nixos
+          # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.someone = import ./hosts/IMAGE/home.nix;
+
+            home-manager.extraSpecialArgs = {
+              got = got;
+            };
+          }
+        ];
+      };
     };
   };
 }

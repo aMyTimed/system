@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ lib, config, pkgs, nixpkgs, ... }:
 
 {
   imports = [
@@ -6,12 +6,16 @@
     (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix")
   ];
 
+  isoImage.squashfsCompression = "gzip -Xcompression-level 1";
+
   virtualisation.vmVariant = {
     virtualisation = {
       memorySize = 4096;
       cores = 2;
     };
   };
+
+  networking.networkmanager.enable = lib.mkForce false;
 
   networking.hostName = "IMAGE"; # live image of the system
 

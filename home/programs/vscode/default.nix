@@ -22,6 +22,7 @@
         "markdown" = true;
         "scminput" = false;
       };
+      "window.zoomLevel" = -2;
     };
   };
 
