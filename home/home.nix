@@ -69,6 +69,7 @@
     wine
     steam
     imagemagick
+    flutter
 
     plank
 

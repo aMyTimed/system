@@ -10,6 +10,7 @@
         pkgs.vscode-extensions.svelte.svelte-vscode
         pkgs.vscode-extensions.tamasfe.even-better-toml
         pkgs.vscode-extensions.bbenoist.nix
+        pkgs.vscode-extensions.dart-code.flutter
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;

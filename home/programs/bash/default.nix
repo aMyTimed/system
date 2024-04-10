@@ -56,7 +56,7 @@ function parse_git_dirty {
 }
 
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin"
-      export PS1="\033[38;2;48;131;255m\033[1m[\u@somewhere:\w`parse_git_branch`]\$ \033[0m";
+      # export PS1="\033[38;2;48;131;255m\033[1m[\u@somewhere:\w`parse_git_branch`]\$ \033[0m";
     '';
 
     shellAliases = {

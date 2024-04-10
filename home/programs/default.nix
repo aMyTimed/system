@@ -9,5 +9,6 @@
     ./bash
     ./hyprpaper
     ./vscode
+    #./neovim
   ];
 }
