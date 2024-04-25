@@ -11,6 +11,8 @@
         pkgs.vscode-extensions.tamasfe.even-better-toml
         pkgs.vscode-extensions.bbenoist.nix
         pkgs.vscode-extensions.dart-code.flutter
+
+        pkgs.vscode-extensions.rust-lang.rust-analyzer
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
@@ -25,6 +27,7 @@
       };
       "window.zoomLevel" = -2;
     };
+    mutableExtensionsDir = false;
   };
 
   # Custom product.json so GitHub Copilot works on VSCodium

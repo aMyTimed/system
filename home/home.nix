@@ -1,4 +1,4 @@
-{ config, pkgs, got, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -42,7 +42,7 @@
   };
 
   # Packages that should be installed to the user profile.
-  home.packages = with pkgs; with got; [
+  home.packages = with pkgs; [
     pipes-rs
     hyprpaper
     yad
@@ -56,7 +56,8 @@
     libresprite
     libnotify
     glib
-    vscodium
+    #vscodium
+    lapce
     peek
     inkscape-with-extensions
     blender
@@ -66,15 +67,16 @@
     kcolorchooser
     discord
     teams-for-linux
-    wine
+    #wine
     steam
     imagemagick
-    flutter
+    #flutter
 
     plank
 
     # programming languages
     rustc
+    rustfmt
     cargo
     bun
     nodejs
@@ -113,8 +115,27 @@
     vscode-langservers-extracted
     rust-analyzer
 
-    (pkgs.buildEnv { name = "got"; paths = [ got ]; })
+    (pkgs.buildEnv { name = "got"; paths = [ inputs.got ]; })
+
+    #(pkgs.callPackage ../programs/wine-ge { })
+
+        (pkgs.callPackage ./packages/hyprswitch {})
+
+    #umu.packages.${pkgs.system}.umu
+
+    unityhub
+
+    #inputs.nix-gaming.packages.${pkgs.system}.wine-ge
   ];
+
+  #xdg.desktopEntries.umu = {
+  #  name = "Umu";
+  #  genericName = "Windows Application";
+  #  exec = "umu %U";
+  #  terminal = false;
+  #  categories = [ "Application" ];
+  #  mimeType = [ "application/x-msdownload" "application/x-windows-installer" "application/x-msi" ];
+  #};
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage

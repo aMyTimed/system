@@ -83,8 +83,10 @@
         "$mod, right, movefocus, r"
         "$mod, up, movefocus, u"
         "$mod, down, movefocus, d"
-        "Alt_L, Tab, workspace, e+1"
-        "Alt_l SHIFT, Tab, workspace, e-1"
+        #"Alt_L, Tab, workspace, e+1"
+        #"Alt_l SHIFT, Tab, workspace, e-1"
+        "Alt_L, Tab, exec, sleep 0.1 && hyprswitch --daemon --ignore-monitors --switch-ws-on-hover"
+
         "$mod, minus, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         "$mod, equal, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         "$mod, V, togglefloating"
@@ -105,6 +107,9 @@
           )
           10)
       );
+      bindrn = [
+        "Alt_L, Tab, exec, hyprswitch --daemon --ignore-monitors --switch-ws-on-hover || hyprswitch --stop-daemon"
+      ];
   };
 
 }

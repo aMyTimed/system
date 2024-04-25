@@ -25,6 +25,11 @@
     got = {
       url = "github:asour8/got/main";
     };
+    umu = {
+      url = "git+https://github.com/Open-Wine-Components/umu-launcher/?dir=packaging\/nix&submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   # `outputs` are all the build result of the flake.
@@ -37,7 +42,7 @@
   # 
   # The `@` syntax here is used to alias the attribute set of the
   # inputs's parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, home-manager, got, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, got, umu, ... }@inputs: {
     nixosConfigurations = {
       "PORTEGE8" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -56,9 +61,7 @@
 
             home-manager.users.someone = import ./hosts/PORTEGE8/home.nix;
 
-            home-manager.extraSpecialArgs = {
-              got = got;
-            };
+            home-manager.extraSpecialArgs = {inherit inputs;};
           }
         ];
       };
@@ -79,9 +82,7 @@
 
             home-manager.users.someone = import ./hosts/LENOVO720/home.nix;
 
-            home-manager.extraSpecialArgs = {
-              got = got;
-            };
+            home-manager.extraSpecialArgs = {inherit inputs;};
           }
         ];
       };
@@ -101,9 +102,7 @@
 
             home-manager.users.someone = import ./hosts/IMAGE/home.nix;
 
-            home-manager.extraSpecialArgs = {
-              got = got;
-            };
+            home-manager.extraSpecialArgs = {inherit inputs;};
           }
         ];
       };
