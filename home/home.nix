@@ -13,6 +13,11 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
+      packageOverrides = pkgs: {
+        llama-cpp = (
+          builtins.getFlake "github:ggerganov/llama.cpp"
+        ).packages.${builtins.currentSystem}.default;
+      };
     };
   };
 
@@ -49,6 +54,7 @@
     grimblast
     rofi
     wev
+    wine
     # essentials
     librewolf
     #ungoogled-chromium # for webdev, chromium is good for testing and stuff
@@ -57,8 +63,9 @@
     libnotify
     glib
     #vscodium
-    lapce
     peek
+    nix-ld
+    steam-run
     inkscape-with-extensions
     blender
     vlc
@@ -75,9 +82,9 @@
     plank
 
     # programming languages
-    rustc
-    rustfmt
-    cargo
+    inputs.unstable.legacyPackages.${pkgs.system}.rustc
+    inputs.unstable.legacyPackages.${pkgs.system}.rustfmt
+    inputs.unstable.legacyPackages.${pkgs.system}.cargo
     bun
     nodejs
 
@@ -105,7 +112,7 @@
     # with more details log output
     nix-output-monitor
 
-    retroarchFull
+    #retroarchFull
 
     yt-dlp
 
@@ -113,17 +120,31 @@
 
     nodePackages.typescript-language-server
     vscode-langservers-extracted
-    rust-analyzer
+    inputs.unstable.legacyPackages.${pkgs.system}.rust-analyzer
 
     (pkgs.buildEnv { name = "got"; paths = [ inputs.got ]; })
 
     #(pkgs.callPackage ../programs/wine-ge { })
 
-        (pkgs.callPackage ./packages/hyprswitch {})
+#        (pkgs.callPackage ./packages/hyprswitch {})
 
     #umu.packages.${pkgs.system}.umu
 
     unityhub
+
+    llama-cpp
+
+    harfbuzz
+
+    inputs.unstable.legacyPackages.${pkgs.system}.zed-editor
+
+    dotnet-sdk_8
+
+    gparted
+    unetbootin
+
+    fontconfig
+    fontconfig.dev
 
     #inputs.nix-gaming.packages.${pkgs.system}.wine-ge
   ];
