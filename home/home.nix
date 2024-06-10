@@ -143,6 +143,13 @@
     gparted
     unetbootin
 
+    xorg.xhost
+    fatrace
+
+    inputs.unstable.legacyPackages.${pkgs.system}.distrobox
+    inputs.unstable.legacyPackages.${pkgs.system}.boxbuddy
+    inputs.unstable.legacyPackages.${pkgs.system}.podman
+
     fontconfig
     fontconfig.dev
 

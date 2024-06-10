@@ -120,6 +120,9 @@
     wget
     # helix (now set by home manager with settings)
     git
+    pacman
+    apt
+    dpkg
     killall
     curl
     byobu
@@ -161,6 +164,8 @@
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+
+  virtualisation.containers.enable = true;
 
   hardware.opengl = { # this fixes the "glXChooseVisual failed" bug, context: https://github.com/NixOS/nixpkgs/issues/47932 
     enable = true; 
